@@ -1,0 +1,1 @@
+function dynamic_cutscene:cutscene/tp_to_position with storage dynamic_cutscene:cutscene

@@ -1,0 +1,1 @@
+$tellraw @s [{"text":"🎬 $(current_cutscene)","color":"aqua","click_event":{"action":"run_command","command":"/function dynamic_cutscene:menu/cutscene_options {cutscene_name:\"$(current_cutscene)\"}"},"hover_event":{"action":"show_text","value":"Click to view options for $(current_cutscene)"}}]

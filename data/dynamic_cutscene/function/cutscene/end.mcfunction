@@ -1,0 +1,10 @@
+execute as @a[tag=spectating] run spectate
+execute store result score #temp dynamic_cutscene.counter run data get storage dynamic_cutscene:player original_gamemode
+execute if score #temp dynamic_cutscene.counter matches 0 run gamemode survival @s
+execute if score #temp dynamic_cutscene.counter matches 1 run gamemode creative @s
+execute if score #temp dynamic_cutscene.counter matches 2 run gamemode adventure @s
+execute if score #temp dynamic_cutscene.counter matches 3 run gamemode spectator @s
+function dynamic_cutscene:cutscene/restore_position with storage dynamic_cutscene:player
+kill @e[type=item_display,tag=cutscene_camera]
+scoreboard players reset #cutscene_step dynamic_cutscene.counter
+$tellraw @a {"text":"Cutscene $(cutscene_name) ended!","color":"green"}

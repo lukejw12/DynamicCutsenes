@@ -1,0 +1,2 @@
+$data modify storage dynamic_cutscene:temp current_cutscene set from storage dynamic_cutscene:menu found_cutscenes[$(display_index)]
+function dynamic_cutscene:menu/show_cutscene_option with storage dynamic_cutscene:temp

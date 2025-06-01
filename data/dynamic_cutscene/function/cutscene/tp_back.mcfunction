@@ -1,0 +1,1 @@
+$tp @s $(final_x) $(final_y) $(final_z) $(final_rot_y) $(final_rot_x)

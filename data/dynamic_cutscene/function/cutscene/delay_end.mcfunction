@@ -1,0 +1,1 @@
+execute as @a[tag=spectating] run function dynamic_cutscene:cutscene/end with storage dynamic_cutscene:cutscene
