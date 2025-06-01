@@ -9,7 +9,6 @@ execute store result storage dynamic_cutscene:player rot_x float 1 run data get 
 
 
 tag @s add spectating
-# Store parameters
 $data modify storage dynamic_cutscene:cutscene speed set value $(speed)
 $data modify storage dynamic_cutscene:cutscene cutscene_name set value "$(cutscene_name)"
 

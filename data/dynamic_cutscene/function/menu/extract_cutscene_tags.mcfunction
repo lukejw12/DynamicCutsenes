@@ -1,4 +1,3 @@
-##tellraw @a [{"text":"Debug: Marker tags: ","color":"yellow"},{"nbt":"Tags","entity":"@s","color":"white"}]
 
 data modify storage dynamic_cutscene:temp marker_tags set from entity @s Tags
 
