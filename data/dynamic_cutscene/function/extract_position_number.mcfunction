@@ -1,0 +1,2 @@
+data modify storage dynamic_cutscene:temp position_string set string storage dynamic_cutscene:temp current_tag 9
+execute store result score @s dynamic_cutscene.temp_pos run data get storage dynamic_cutscene:temp position_string

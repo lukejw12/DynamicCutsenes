@@ -44,16 +44,17 @@ scoreboard players operation #final_y dynamic_cutscene.counter += #diff_y dynami
 scoreboard players operation #final_z dynamic_cutscene.counter = #start_z dynamic_cutscene.counter
 scoreboard players operation #final_z dynamic_cutscene.counter += #diff_z dynamic_cutscene.counter
 
-scoreboard players set #1000 dynamic_cutscene.counter 1000
-scoreboard players operation #curve_calc dynamic_cutscene.counter = #1000 dynamic_cutscene.counter
-scoreboard players operation #curve_calc dynamic_cutscene.counter -= #t_scaled dynamic_cutscene.counter
+scoreboard players set #curve_calc dynamic_cutscene.counter 0
 
-scoreboard players operation #curve_calc dynamic_cutscene.counter *= #t_scaled dynamic_cutscene.counter
-scoreboard players operation #curve_calc dynamic_cutscene.counter /= #1000 dynamic_cutscene.counter
+execute if score #t_scaled dynamic_cutscene.counter matches 150..200 run scoreboard players set #curve_calc dynamic_cutscene.counter -2000
 
-scoreboard players set #curve_offset dynamic_cutscene.counter 32000
-scoreboard players operation #curve_calc dynamic_cutscene.counter *= #curve_offset dynamic_cutscene.counter
-scoreboard players operation #curve_calc dynamic_cutscene.counter /= #1000 dynamic_cutscene.counter
+execute if score #t_scaled dynamic_cutscene.counter matches 300..366 run scoreboard players set #curve_calc dynamic_cutscene.counter -4000
+
+execute if score #t_scaled dynamic_cutscene.counter matches 450..550 run scoreboard players set #curve_calc dynamic_cutscene.counter -5000
+
+execute if score #t_scaled dynamic_cutscene.counter matches 633..700 run scoreboard players set #curve_calc dynamic_cutscene.counter -4000
+
+execute if score #t_scaled dynamic_cutscene.counter matches 800..866 run scoreboard players set #curve_calc dynamic_cutscene.counter -2000
 
 scoreboard players operation #final_x dynamic_cutscene.counter += #curve_calc dynamic_cutscene.counter
 
@@ -97,4 +98,3 @@ execute store result storage dynamic_cutscene_interpolate_data final_pitch float
 function dynamic_cutscene:summon_interpolated_marker with storage dynamic_cutscene_interpolate_data
 
 execute as @e[type=marker,tag=cutscene_point,tag=!positioned,limit=1,sort=nearest] run function dynamic_cutscene:positions/apply_position_tag with storage dynamic_cutscene:count
-

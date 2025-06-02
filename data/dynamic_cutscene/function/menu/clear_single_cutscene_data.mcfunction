@@ -1,0 +1,2 @@
+$data modify storage dynamic_cutscene:temp cutscene_to_clear set from storage dynamic_cutscene:menu found_cutscenes[$(clear_index)]
+function dynamic_cutscene:menu/clear_data_for_cutscene with storage dynamic_cutscene:temp

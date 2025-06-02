@@ -1,1 +1,3 @@
-$tellraw @s [{"text":"🎬 $(current_cutscene)","color":"aqua","click_event":{"action":"run_command","command":"/function dynamic_cutscene:menu/cutscene_options {cutscene_name:\"$(current_cutscene)\"}"},"hover_event":{"action":"show_text","value":"Click to view options for $(current_cutscene)"}}]
+$execute unless data storage dynamic_cutscene:display_names $(current_cutscene) run data modify storage dynamic_cutscene:display_names $(current_cutscene) set value "$(current_cutscene)"
+$data modify storage dynamic_cutscene:temp display_name set from storage dynamic_cutscene:display_names $(current_cutscene)
+function dynamic_cutscene:menu/show_cutscene_with_display_name with storage dynamic_cutscene:temp
