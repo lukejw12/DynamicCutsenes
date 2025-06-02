@@ -1,4 +1,4 @@
-$execute as @e[type=marker,tag=cutscene_point,tag=$(cutscene_name)] at @s run particle minecraft:end_rod ~ ~1 ~ 0 0 0 0 20 force
+$execute as @e[type=marker,tag=cutscene_point,tag=$(cutscene_name)] at @s run particle minecraft:$(particle_type) ~ ~ ~ 0 0 0 0 20 force
 
 scoreboard players remove #particle_timer dynamic_cutscene.counter 1
 

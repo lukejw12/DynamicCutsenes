@@ -1,0 +1,1 @@
+$spectate @e[type=item_display,tag=camera_$(cutscene_name),limit=1] @s

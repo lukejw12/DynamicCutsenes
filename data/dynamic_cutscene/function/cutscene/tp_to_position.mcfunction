@@ -1,4 +1,4 @@
-$execute as @e[type=item_display,tag=cutscene_camera] run tp @s @e[type=marker,tag=position_$(step),tag=$(cutscene_name),limit=1]
+$execute as @e[type=item_display,tag=camera_$(cutscene_name)] run tp @s @e[type=marker,tag=position_$(step),tag=$(cutscene_name),limit=1]
 
 scoreboard players add #cutscene_step dynamic_cutscene.counter 1
 execute store result storage dynamic_cutscene:cutscene step int 1 run scoreboard players get #cutscene_step dynamic_cutscene.counter

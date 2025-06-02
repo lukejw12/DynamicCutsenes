@@ -1,1 +1,3 @@
 $execute positioned $(final_x) $(final_y) $(final_z) run summon marker ~ ~ ~ {Tags:["cutscene_point","$(cutscene_name)","interpolated"],Rotation:[$(final_yaw)f,$(final_pitch)f]}
+execute as @e[type=marker,tag=cutscene_point,tag=interpolated,tag=!positioned,limit=1,sort=nearest] run tag @s add temp_particles
+execute as @e[type=marker,tag=cutscene_point,tag=interpolated,tag=!positioned,limit=1,sort=nearest] run scoreboard players set @s dynamic_cutscene.particle_timer 150
