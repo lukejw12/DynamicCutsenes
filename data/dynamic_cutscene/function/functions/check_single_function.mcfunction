@@ -1,0 +1,4 @@
+$data modify storage dynamic_cutscene:temp current_function set from storage dynamic_cutscene:functions $(current_cutscene)[$(check_index)]
+data modify storage dynamic_cutscene:temp command set from storage dynamic_cutscene:temp current_function.command
+execute store result score #function_delay dynamic_cutscene.counter run data get storage dynamic_cutscene:temp current_function.delay
+execute if score #global_ticks dynamic_cutscene.counter = #function_delay dynamic_cutscene.counter unless score cutscene_$(current_cutscene)_func_$(check_index) dynamic_cutscene.executed matches 1 run function dynamic_cutscene:functions/execute_function with storage dynamic_cutscene:temp

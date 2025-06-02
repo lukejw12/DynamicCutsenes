@@ -1,0 +1,2 @@
+data modify storage dynamic_cutscene:temp cutscene_name set string storage dynamic_cutscene:temp current_tag 9
+function dynamic_cutscene:functions/check_cutscene_functions with storage dynamic_cutscene:temp
