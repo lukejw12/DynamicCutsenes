@@ -14,5 +14,4 @@ scoreboard players operation #tick_mod dynamic_cutscene.counter %= #1 dynamic_cu
 execute as @a[tag=spectating] run function dynamic_cutscene:functions/check_player_cutscene
 
 execute as @a[tag=spectating,gamemode=!spectator] run gamemode spectator @s
-execute as @a[tag=spectating,gamemode=!spectator] run title @s actionbar [{"text":"You cannot leave the cutscene!","color":"red"}]
 execute as @a[tag=spectating] run function dynamic_cutscene:functions/lock_to_cutscene

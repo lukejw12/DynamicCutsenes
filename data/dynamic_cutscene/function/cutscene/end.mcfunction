@@ -1,4 +1,4 @@
-execute as @a[tag=spectating] run spectate
+execute as @s[tag=spectating] run spectate
 execute store result score #temp dynamic_cutscene.counter run data get storage dynamic_cutscene:player original_gamemode
 execute if score #temp dynamic_cutscene.counter matches 0 run gamemode survival @s
 execute if score #temp dynamic_cutscene.counter matches 1 run gamemode creative @s
@@ -8,10 +8,9 @@ function dynamic_cutscene:cutscene/restore_position with storage dynamic_cutscen
 
 $kill @e[type=item_display,tag=camera_$(cutscene_name)]
 
-$tag @a remove watching_$(cutscene_name)
-$tag @a[tag=watching_$(cutscene_name)] remove spectating
-tag @a remove spectating
+$tag @s remove watching_$(cutscene_name)
+$tag @s[tag=watching_$(cutscene_name)] remove spectating
+tag @s remove spectating
 scoreboard players reset * dynamic_cutscene.executed
 scoreboard players reset #cutscene_step dynamic_cutscene.counter
-scoreboard players set #cutscene_active dynamic_cutscene.counter 0
-$tellraw @a {"text":"Cutscene $(cutscene_name) ended!","color":"green"}
+scoreboard players set #cutscene_active dynamic_cutscene.counter 0 
