@@ -1,3 +1,5 @@
+execute store result score #current_page dynamic_cutscene.counter run scoreboard players get @s dynamic_cutscene.menu_page
+
 execute if score #cutscenes_found dynamic_cutscene.counter matches 0 run tellraw @s [{"text":"No cutscenes found!","color":"red"}]
 execute if score #cutscenes_found dynamic_cutscene.counter matches 0 run return 0
 
@@ -5,6 +7,7 @@ scoreboard players set #cutscenes_per_page dynamic_cutscene.counter 5
 scoreboard players operation #total_pages dynamic_cutscene.counter = #cutscenes_found dynamic_cutscene.counter
 scoreboard players add #total_pages dynamic_cutscene.counter 4
 scoreboard players operation #total_pages dynamic_cutscene.counter /= #cutscenes_per_page dynamic_cutscene.counter
+
 scoreboard players operation #start_index dynamic_cutscene.counter = #current_page dynamic_cutscene.counter
 scoreboard players remove #start_index dynamic_cutscene.counter 1
 scoreboard players operation #start_index dynamic_cutscene.counter *= #cutscenes_per_page dynamic_cutscene.counter
