@@ -1,0 +1,1 @@
+$execute positioned $(final_x) $(final_y) $(final_z) run summon marker ~ ~ ~ {Tags:["cutscene_point","$(cutscene_name)","interpolated"],Rotation:[$(final_yaw)f,$(final_pitch)f]}

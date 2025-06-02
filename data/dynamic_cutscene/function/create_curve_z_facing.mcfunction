@@ -1,0 +1,2 @@
+execute as @e[type=marker,tag=interpolate_from] at @s facing entity @e[type=marker,tag=interpolate_to] eyes run tp @s ~ ~ ~ ~ 0
+$execute as @e[type=marker,tag=interpolate_from] at @s rotated ~90 0 positioned ^ ^ ^$(curve_offset) facing entity @e[type=marker,tag=interpolate_to] eyes positioned ^ ^ ^$(distance_factor)0 run summon marker ~ ~ ~ {Tags:["cutscene_point","$(cutscene_name)","interpolated"]}

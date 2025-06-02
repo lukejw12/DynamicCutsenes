@@ -1,32 +1,44 @@
-tellraw @a [{"text":"DEBUG: Interpolate step: ","color":"gray"},{"score":{"name":"#interpolate_step","objective":"dynamic_cutscene.counter"}},{"text":" / ","color":"gray"},{"score":{"name":"#interpolate_amount","objective":"dynamic_cutscene.counter"}}]
 
-execute if score #interpolate_step dynamic_cutscene.counter >= #interpolate_amount dynamic_cutscene.counter run tellraw @a [{"text":"DEBUG: Interpolation complete!","color":"green"}]
 execute if score #interpolate_step dynamic_cutscene.counter >= #interpolate_amount dynamic_cutscene.counter run function dynamic_cutscene:finish_interpolation with storage dynamic_cutscene:count
 execute if score #interpolate_step dynamic_cutscene.counter >= #interpolate_amount dynamic_cutscene.counter run return 0
 
 scoreboard players operation #current_step dynamic_cutscene.counter = #interpolate_step dynamic_cutscene.counter
 scoreboard players add #current_step dynamic_cutscene.counter 1
 
+scoreboard players operation #total_segments dynamic_cutscene.counter = #interpolate_amount dynamic_cutscene.counter
+scoreboard players add #total_segments dynamic_cutscene.counter 1
+
 scoreboard players operation #t_calc dynamic_cutscene.counter = #current_step dynamic_cutscene.counter
 scoreboard players operation #t_calc dynamic_cutscene.counter *= #1000 dynamic_cutscene.counter
-scoreboard players operation #t_calc dynamic_cutscene.counter /= #interpolate_amount dynamic_cutscene.counter
+scoreboard players operation #t_calc dynamic_cutscene.counter /= #total_segments dynamic_cutscene.counter
 execute store result storage dynamic_cutscene_interpolate_data t float 0.001 run scoreboard players get #t_calc dynamic_cutscene.counter
 
-tellraw @a [{"text":"DEBUG: t value: ","color":"gray"},{"nbt":"t","storage":"dynamic_cutscene_interpolate_data"}]
 
 data modify storage dynamic_cutscene_interpolate_data test_mode set from storage dynamic_cutscene_interpolate_data mode
 execute store success score #is_line dynamic_cutscene.counter run data modify storage dynamic_cutscene_interpolate_data test_mode set value "line"
 
-tellraw @a [{"text":"DEBUG: is_line score after test: ","color":"gray"},{"score":{"name":"#is_line","objective":"dynamic_cutscene.counter"}}]
-tellraw @a [{"text":"DEBUG: stored mode: ","color":"gray"},{"nbt":"mode","storage":"dynamic_cutscene_interpolate_data"}]
+data modify storage dynamic_cutscene_interpolate_data test_mode set from storage dynamic_cutscene_interpolate_data mode
+execute store success score #is_curve_y dynamic_cutscene.counter run data modify storage dynamic_cutscene_interpolate_data test_mode set value "curve_y"
 
-execute if score #is_line dynamic_cutscene.counter matches 0 run tellraw @a [{"text":"DEBUG: About to call interpolate_linear","color":"yellow"}]
+data modify storage dynamic_cutscene_interpolate_data test_mode set from storage dynamic_cutscene_interpolate_data mode
+execute store success score #is_curve_x dynamic_cutscene.counter run data modify storage dynamic_cutscene_interpolate_data test_mode set value "curve_x"
+
+data modify storage dynamic_cutscene_interpolate_data test_mode set from storage dynamic_cutscene_interpolate_data mode
+execute store success score #is_curve_z dynamic_cutscene.counter run data modify storage dynamic_cutscene_interpolate_data test_mode set value "curve_z"
+
+data modify storage dynamic_cutscene_interpolate_data test_mode set from storage dynamic_cutscene_interpolate_data mode
+execute store success score #is_curve_legacy dynamic_cutscene.counter run data modify storage dynamic_cutscene_interpolate_data test_mode set value "curve"
+
+
 execute if score #is_line dynamic_cutscene.counter matches 0 run function dynamic_cutscene:interpolate_linear with storage dynamic_cutscene_interpolate_data
 
-execute unless score #is_line dynamic_cutscene.counter matches 0 run tellraw @a [{"text":"DEBUG: Mode is not line, trying curve","color":"yellow"}]
-execute unless score #is_line dynamic_cutscene.counter matches 0 run data modify storage dynamic_cutscene_interpolate_data test_mode set from storage dynamic_cutscene_interpolate_data mode
-execute unless score #is_line dynamic_cutscene.counter matches 0 run execute store success score #is_curve dynamic_cutscene.counter run data modify storage dynamic_cutscene_interpolate_data test_mode set value "curve"
-execute unless score #is_line dynamic_cutscene.counter matches 0 run execute if score #is_curve dynamic_cutscene.counter matches 0 run function dynamic_cutscene:interpolate_curve with storage dynamic_cutscene_interpolate_data
+execute if score #is_curve_y dynamic_cutscene.counter matches 0 run function dynamic_cutscene:interpolate_curve_y with storage dynamic_cutscene_interpolate_data
+
+execute if score #is_curve_x dynamic_cutscene.counter matches 0 run function dynamic_cutscene:interpolate_curve_x with storage dynamic_cutscene_interpolate_data
+
+execute if score #is_curve_z dynamic_cutscene.counter matches 0 run function dynamic_cutscene:interpolate_curve_z with storage dynamic_cutscene_interpolate_data
+
+execute if score #is_curve_legacy dynamic_cutscene.counter matches 0 run function dynamic_cutscene:interpolate_curve_y with storage dynamic_cutscene_interpolate_data
 
 scoreboard players add #interpolate_step dynamic_cutscene.counter 1
 function dynamic_cutscene:interpolate_loop with storage dynamic_cutscene_interpolate_data
