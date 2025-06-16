@@ -13,4 +13,4 @@ scoreboard players reset #marker_count dynamic_cutscene.counter
 scoreboard players set @s dynamic_cutscene.menu_page 1
 tellraw @s [{"text":"💥 CLEARED! ","color":"red","bold":true},{"text":"Deleted ","color":"yellow"},{"score":{"name":"#total_cutscenes","objective":"dynamic_cutscene.counter"},"color":"white"},{"text":" markers and all associated data.","color":"yellow"}]
 
-function dynamic_cutscene:admin_menu
+function dynamic_cutscene:admin/admin_menu

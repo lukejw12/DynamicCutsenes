@@ -1,0 +1,11 @@
+tellraw @s [{"text":"\n============ CUTSCENE HELP MENU ============","color":"aqua","bold":true}]
+tellraw @s [{"text":"Choose a help topic:","color":"yellow","italic":true}]
+tellraw @s [{"text":"","color":"gray"}]
+
+tellraw @s [{"text":"📍 Creating Points","color":"green","bold":true,"click_event":{"action":"run_command","command":"/function dynamic_cutscene:admin/help/creating_points"},"hover_event":{"action":"show_text","value":"Learn how to create cutscene points with different interpolation types"}}]
+tellraw @s [{"text":"🎬 Playing Cutscenes","color":"yellow","bold":true,"click_event":{"action":"run_command","command":"/function dynamic_cutscene:admin/help/playing_cutscenes"},"hover_event":{"action":"show_text","value":"Learn how to play cutscenes with different speeds"}}]
+tellraw @s [{"text":"⚙ Management","color":"blue","bold":true,"click_event":{"action":"run_command","command":"/function dynamic_cutscene:admin/help/management"},"hover_event":{"action":"show_text","value":"Commands for managing and organizing your cutscenes"}}]
+tellraw @s [{"text":"📊 Parameters","color":"dark_purple","bold":true,"click_event":{"action":"run_command","command":"/function dynamic_cutscene:admin/help/parameters"},"hover_event":{"action":"show_text","value":"Detailed explanation of all parameter values"}}]
+tellraw @s [{"text":"💡 Tips & Workflow","color":"gold","bold":true,"click_event":{"action":"run_command","command":"/function dynamic_cutscene:admin/help/tips"},"hover_event":{"action":"show_text","value":"Best practices and workflow tips for creating great cutscenes"}}]
+tellraw @s [{"text":"⬅ Back to Admin Menu","color":"gray","click_event":{"action":"run_command","command":"/function dynamic_cutscene:admin/admin_menu"},"hover_event":{"action":"show_text","value":"Return to the main cutscene admin menu"}}]
+tellraw @s [{"text":"===========================================","color":"aqua","bold":true}]

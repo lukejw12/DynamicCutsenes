@@ -14,4 +14,4 @@ execute if score #marker_count dynamic_cutscene.counter matches 1.. if score #mo
 
 execute if score #should_interpolate dynamic_cutscene.counter matches 1 run function dynamic_cutscene:start_interpolation with storage dynamic_cutscene:count
 
-execute unless score #should_interpolate dynamic_cutscene.counter matches 1 run function dynamic_cutscene:add_normal_marker with storage dynamic_cutscene:count
+execute unless score #should_interpolate dynamic_cutscene.counter matches 1 run function dynamic_cutscene:create_normal_marker with storage dynamic_cutscene:count

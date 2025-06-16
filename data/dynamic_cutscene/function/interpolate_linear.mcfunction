@@ -1,4 +1,3 @@
-
 execute unless entity @e[type=marker,tag=interpolate_from] run return 0
 execute unless entity @e[type=marker,tag=interpolate_to] run return 0
 
@@ -30,6 +29,26 @@ scoreboard players operation #diff_y dynamic_cutscene.counter -= #start_y dynami
 scoreboard players operation #diff_z dynamic_cutscene.counter = #end_z dynamic_cutscene.counter
 scoreboard players operation #diff_z dynamic_cutscene.counter -= #start_z dynamic_cutscene.counter
 
+execute store result score #t_scaled dynamic_cutscene.counter run data get storage dynamic_cutscene_interpolate_data t 1000
+
+scoreboard players operation #diff_x dynamic_cutscene.counter *= #t_scaled dynamic_cutscene.counter
+scoreboard players operation #diff_x dynamic_cutscene.counter /= #1000 dynamic_cutscene.counter
+
+scoreboard players operation #diff_y dynamic_cutscene.counter *= #t_scaled dynamic_cutscene.counter
+scoreboard players operation #diff_y dynamic_cutscene.counter /= #1000 dynamic_cutscene.counter
+
+scoreboard players operation #diff_z dynamic_cutscene.counter *= #t_scaled dynamic_cutscene.counter
+scoreboard players operation #diff_z dynamic_cutscene.counter /= #1000 dynamic_cutscene.counter
+
+scoreboard players operation #final_x dynamic_cutscene.counter = #start_x dynamic_cutscene.counter
+scoreboard players operation #final_x dynamic_cutscene.counter += #diff_x dynamic_cutscene.counter
+
+scoreboard players operation #final_y dynamic_cutscene.counter = #start_y dynamic_cutscene.counter
+scoreboard players operation #final_y dynamic_cutscene.counter += #diff_y dynamic_cutscene.counter
+
+scoreboard players operation #final_z dynamic_cutscene.counter = #start_z dynamic_cutscene.counter
+scoreboard players operation #final_z dynamic_cutscene.counter += #diff_z dynamic_cutscene.counter
+
 execute store result score #start_yaw dynamic_cutscene.counter run data get storage dynamic_cutscene_interpolate_data start_yaw 1000
 execute store result score #start_pitch dynamic_cutscene.counter run data get storage dynamic_cutscene_interpolate_data start_pitch 1000
 
@@ -45,34 +64,11 @@ scoreboard players operation #diff_pitch dynamic_cutscene.counter -= #start_pitc
 execute if score #diff_yaw dynamic_cutscene.counter matches 180001.. run scoreboard players remove #diff_yaw dynamic_cutscene.counter 360000
 execute if score #diff_yaw dynamic_cutscene.counter matches ..-180001 run scoreboard players add #diff_yaw dynamic_cutscene.counter 360000
 
-execute if score #diff_pitch dynamic_cutscene.counter matches 90001.. run scoreboard players remove #diff_pitch dynamic_cutscene.counter 180000
-execute if score #diff_pitch dynamic_cutscene.counter matches ..-90001 run scoreboard players add #diff_pitch dynamic_cutscene.counter 180000
-
-execute store result score #t_scaled dynamic_cutscene.counter run data get storage dynamic_cutscene_interpolate_data t 1000
-
-scoreboard players operation #diff_x dynamic_cutscene.counter *= #t_scaled dynamic_cutscene.counter
-scoreboard players operation #diff_x dynamic_cutscene.counter /= #1000 dynamic_cutscene.counter
-
-scoreboard players operation #diff_y dynamic_cutscene.counter *= #t_scaled dynamic_cutscene.counter
-scoreboard players operation #diff_y dynamic_cutscene.counter /= #1000 dynamic_cutscene.counter
-
-scoreboard players operation #diff_z dynamic_cutscene.counter *= #t_scaled dynamic_cutscene.counter
-scoreboard players operation #diff_z dynamic_cutscene.counter /= #1000 dynamic_cutscene.counter
-
 scoreboard players operation #diff_yaw dynamic_cutscene.counter *= #t_scaled dynamic_cutscene.counter
 scoreboard players operation #diff_yaw dynamic_cutscene.counter /= #1000 dynamic_cutscene.counter
 
 scoreboard players operation #diff_pitch dynamic_cutscene.counter *= #t_scaled dynamic_cutscene.counter
 scoreboard players operation #diff_pitch dynamic_cutscene.counter /= #1000 dynamic_cutscene.counter
-
-scoreboard players operation #final_x dynamic_cutscene.counter = #start_x dynamic_cutscene.counter
-scoreboard players operation #final_x dynamic_cutscene.counter += #diff_x dynamic_cutscene.counter
-
-scoreboard players operation #final_y dynamic_cutscene.counter = #start_y dynamic_cutscene.counter
-scoreboard players operation #final_y dynamic_cutscene.counter += #diff_y dynamic_cutscene.counter
-
-scoreboard players operation #final_z dynamic_cutscene.counter = #start_z dynamic_cutscene.counter
-scoreboard players operation #final_z dynamic_cutscene.counter += #diff_z dynamic_cutscene.counter
 
 scoreboard players operation #final_yaw dynamic_cutscene.counter = #start_yaw dynamic_cutscene.counter
 scoreboard players operation #final_yaw dynamic_cutscene.counter += #diff_yaw dynamic_cutscene.counter
@@ -96,5 +92,3 @@ execute store result storage dynamic_cutscene_interpolate_data final_pitch float
 function dynamic_cutscene:summon_interpolated_marker with storage dynamic_cutscene_interpolate_data
 
 execute as @e[type=marker,tag=cutscene_point,tag=!positioned,limit=1,sort=nearest] run function dynamic_cutscene:positions/apply_position_tag with storage dynamic_cutscene:count
-
-execute store result score #debug_markers dynamic_cutscene.counter if entity @e[type=marker,tag=interpolated]

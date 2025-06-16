@@ -3,5 +3,5 @@ tellraw @s [{"text":"⚠ ","color":"red","bold":true},{"text":"DANGER ZONE","col
 tellraw @s [{"text":"This will permanently delete ","color":"yellow"},{"text":"ALL","color":"red","bold":true},{"text":" cutscenes, markers, and functions!","color":"yellow"}]
 tellraw @s [{"text":"Are you absolutely sure?","color":"yellow","bold":true}]
 tellraw @s [{"text":"","color":"gray"}]
-tellraw @s [{"text":"✅ YES - DELETE EVERYTHING","color":"red","bold":true,"click_event":{"action":"run_command","command":"/function dynamic_cutscene:menu/clear_all_confirmed"},"hover_event":{"action":"show_text","value":"⚠ This action cannot be undone!"}},{"text":"    "},{"text":"❌ NO - CANCEL","color":"green","click_event":{"action":"run_command","command":"/function dynamic_cutscene:admin_menu"},"hover_event":{"action":"show_text","value":"Return to admin menu safely"}}]
+tellraw @s [{"text":"✅ YES - DELETE EVERYTHING","color":"red","bold":true,"click_event":{"action":"run_command","command":"/function dynamic_cutscene:menu/clear_all_confirmed"},"hover_event":{"action":"show_text","value":"⚠ This action cannot be undone!"}},{"text":"    "},{"text":"❌ NO - CANCEL","color":"green","click_event":{"action":"run_command","command":"/function dynamic_cutscene:admin/admin_menu"},"hover_event":{"action":"show_text","value":"Return to admin menu safely"}}]
 tellraw @s [{"text":"","color":"gray"}]
