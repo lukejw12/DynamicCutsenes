@@ -7,7 +7,6 @@ tellraw @s [{"text":"1. Plan your shots first","color":"white","hover_event":{"a
 tellraw @s [{"text":"2. Start simple","color":"white","hover_event":{"action":"show_text","value":"Begin with amount:0 and interpolate:none. Get your basic camera positions right before adding smoothing."}}]
 tellraw @s [{"text":"3. Use particles to preview","color":"white","hover_event":{"action":"show_text","value":"Always use the show particles command to visualize your path before playing the cutscene."}}]
 tellraw @s [{"text":"4. Test with fast speed","color":"white","hover_event":{"action":"show_text","value":"Use speed:10 for quick testing, then slow down to your final speed once you're happy with the path."}}]
-
 tellraw @s [{"text":"","color":"gray"}]
 tellraw @s [{"text":"🎬 CINEMATIC TECHNIQUES","color":"aqua","bold":true}]
 tellraw @s [{"text":"• Establish wide, then detail","color":"white","hover_event":{"action":"show_text","value":"Start with wide establishing shots, then move closer for details. This is a classic film technique that works great in Minecraft."}}]
